@@ -1,56 +1,103 @@
-name: Docker Publish
+name: Release
 
 on:
-  push:
-    branches: [main]
-    tags: ["v*"]
-
-env:
-  REGISTRY: ghcr.io
+  workflow_dispatch:
+    inputs:
+      docker:
+        description: "Docker Images"
+        required: false
+        type: boolean
+        default: true
+      githubRelease:
+        description: "GitHub Release"
+        required: false
+        type: boolean
+        default: true
 
 jobs:
-  build-and-push:
+  docker:
+    if: inputs.docker
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    strategy:
-      matrix:
-        include:
-          - app: spaceship-app
-          - app: super-agent
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Log in to Container Registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels)
-        id: meta
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract metadata for spaceship-app
+        id: meta_spaceship
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.app }}
+          images: ghcr.io/${{ github.repository }}-spaceship-app
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=sha
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and push Docker image
+      - name: Build and Push spaceship-app
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ${{ matrix.app }}/Dockerfile
+          file: spaceship-app/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta_spaceship.outputs.tags }}
+          labels: ${{ steps.meta_spaceship.outputs.labels }}
           platforms: linux/amd64,linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=spaceship-app
+          cache-to: type=gha,mode=max,scope=spaceship-app
+
+      - name: Extract metadata for super-agent
+        id: meta_super_agent
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-super-agent
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Build and Push super-agent
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: super-agent/Dockerfile
+          push: true
+          tags: ${{ steps.meta_super_agent.outputs.tags }}
+          labels: ${{ steps.meta_super_agent.outputs.labels }}
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha,scope=super-agent
+          cache-to: type=gha,mode=max,scope=super-agent
+
+  githubRelease:
+    needs: [docker]
+    if: |
+      always() &&
+      !contains(needs.*.result, 'cancelled') &&
+      !contains(needs.*.result, 'failure') &&
+      inputs.githubRelease
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create GitHub Release
+        uses: open-resource-discovery/github-release@main
