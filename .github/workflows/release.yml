@@ -43,19 +43,21 @@ jobs:
           echo "LAST_COMMIT_HASH=$LAST_COMMIT_HASH" >> $GITHUB_ENV
           echo "LAST_COMMIT_HASH=${LAST_COMMIT_HASH}"
 
-          VERSION=$(node -p -e "require('./spaceship-app/package.json').version")
+          SPACESHIP_VERSION=$(node -p -e "require('./spaceship-app/package.json').version")
 
           SPACESHIP_TAGS=""
-          if [[ $VERSION =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+          if [[ $SPACESHIP_VERSION =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
             SPACESHIP_TAGS="${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-spaceship-app:latest"
           fi
-          SPACESHIP_TAGS="$SPACESHIP_TAGS,${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-spaceship-app:$VERSION"
+          SPACESHIP_TAGS="$SPACESHIP_TAGS,${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-spaceship-app:$SPACESHIP_VERSION"
+
+          SUPER_AGENT_VERSION=$(node -p -e "require('./super-agent/package.json').version")
 
           SUPER_AGENT_TAGS=""
-          if [[ $VERSION =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+          if [[ $SUPER_AGENT_VERSION =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
             SUPER_AGENT_TAGS="${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-super-agent:latest"
           fi
-          SUPER_AGENT_TAGS="$SUPER_AGENT_TAGS,${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-super-agent:$VERSION"
+          SUPER_AGENT_TAGS="$SUPER_AGENT_TAGS,${{ vars.DOCKER_REGISTRY }}/${{ github.repository }}-super-agent:$SUPER_AGENT_VERSION"
 
           echo "spaceship_tags=$SPACESHIP_TAGS" >> $GITHUB_OUTPUT
           echo "super_agent_tags=$SUPER_AGENT_TAGS" >> $GITHUB_OUTPUT
