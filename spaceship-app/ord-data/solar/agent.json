@@ -1,0 +1,39 @@
+{
+  "name": "Solar System Explorer",
+  "description": "Your guide to the solar system! Get weather reports, space facts, and astronomy events.",
+  "protocolVersion": "0.3.0",
+  "version": "1.0.0",
+  "url": "http://localhost:3001/solar",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "solar-weather",
+      "name": "Solar System Weather",
+      "description": "Provides fun, fictional weather forecasts for planets in our solar system.",
+      "tags": ["weather", "planets", "space", "fun"],
+      "examples": [
+        "What's the weather like on Mars today?",
+        "How's the weather on Jupiter?"
+      ]
+    },
+    {
+      "id": "space-facts",
+      "name": "Space Facts",
+      "description": "Share fascinating facts about planets, moons, and celestial objects.",
+      "tags": ["facts", "planets", "education"],
+      "examples": [
+        "Tell me a fact about Saturn's rings",
+        "How big is the Sun compared to Earth?"
+      ]
+    }
+  ],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "provider": {
+    "organization": "SAP SE",
+    "url": "https://sap.com"
+  }
+}

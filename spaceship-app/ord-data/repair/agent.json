@@ -1,0 +1,39 @@
+{
+  "name": "Repair Technician",
+  "description": "The ship's repair system. Diagnoses and fixes engines, hull breaches, shields, power systems, and life support.",
+  "protocolVersion": "0.3.0",
+  "version": "1.0.0",
+  "url": "http://localhost:3001/repair",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "engine-repair",
+      "name": "Engine Repair",
+      "description": "Diagnoses and repairs propulsion and engine systems.",
+      "tags": ["repair", "engine", "propulsion", "fix"],
+      "examples": [
+        "The engines are overheating",
+        "Propulsion system is failing"
+      ]
+    },
+    {
+      "id": "hull-diagnostics",
+      "name": "Hull Diagnostics",
+      "description": "Detects and repairs hull damage, breaches, and structural issues.",
+      "tags": ["hull", "damage", "shields", "diagnostics"],
+      "examples": [
+        "Hull breach on deck 3",
+        "The shields are failing"
+      ]
+    }
+  ],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "provider": {
+    "organization": "SAP SE",
+    "url": "https://sap.com"
+  }
+}

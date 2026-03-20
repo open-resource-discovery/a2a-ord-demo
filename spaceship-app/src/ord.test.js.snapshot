@@ -1,0 +1,196 @@
+exports[`ORD Schema Validation > ORD document matches snapshot 1`] = `
+{
+  "$schema": "https://open-resource-discovery.org/spec-v1/interfaces/Document.schema.json",
+  "openResourceDiscovery": "1.14",
+  "policyLevels": [
+    "sap:core:v1"
+  ],
+  "packages": [
+    {
+      "ordId": "neonephos:package:spaceship-app:v1",
+      "title": "Spaceship App",
+      "shortDescription": "Two A2A agents for space exploration and ship repair",
+      "description": "Hosts two AI agents discoverable via ORD, communicating via A2A.",
+      "version": "1.0.0",
+      "vendor": "neonephos:vendor:Neonephos:"
+    }
+  ],
+  "consumptionBundles": [
+    {
+      "ordId": "neonephos:consumptionBundle:open:v1",
+      "title": "Open Access",
+      "version": "1.0.0",
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    }
+  ],
+  "entityTypes": [
+    {
+      "ordId": "neonephos:entityType:Spaceship:v1",
+      "localId": "Spaceship",
+      "title": "Spaceship",
+      "shortDescription": "A configurable spaceship with crew, systems, and mission parameters",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "level": "aggregate",
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    },
+    {
+      "ordId": "neonephos:entityType:Engine:v1",
+      "localId": "Engine",
+      "title": "Engine",
+      "shortDescription": "Propulsion system component of a spaceship",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "level": "sub-entity",
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    }
+  ],
+  "agents": [
+    {
+      "ordId": "neonephos:agent:SolarSystemExplorer:v1",
+      "title": "Solar System Explorer",
+      "shortDescription": "AI agent for space weather and astronomy facts",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "relatedEntityTypes": [
+        "neonephos:entityType:Spaceship:v1"
+      ],
+      "exposedApiResources": [
+        {
+          "ordId": "neonephos:apiResource:SolarSystemExplorer:v1"
+        }
+      ],
+      "partOfGroups": [
+        "sap.aicore:llmModel:sap.aicore:anthropic--claude-4-6-sonnet"
+      ],
+      "labels": {
+        "interactionMode": [
+          "conversational",
+          "system-triggered"
+        ]
+      },
+      "tags": [
+        "astronomy",
+        "space-weather",
+        "exploration",
+        "ai-agent"
+      ],
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    },
+    {
+      "ordId": "neonephos:agent:RepairTechnician:v1",
+      "title": "Repair Technician",
+      "shortDescription": "AI agent for ship diagnostics and repair",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "relatedEntityTypes": [
+        "neonephos:entityType:Spaceship:v1",
+        "neonephos:entityType:Engine:v1"
+      ],
+      "exposedApiResources": [
+        {
+          "ordId": "neonephos:apiResource:RepairTechnician:v1"
+        }
+      ],
+      "partOfGroups": [
+        "sap.aicore:llmModel:sap.aicore:anthropic--claude-4-6-sonnet"
+      ],
+      "labels": {
+        "interactionMode": [
+          "conversational",
+          "system-triggered"
+        ]
+      },
+      "tags": [
+        "repair",
+        "diagnostics",
+        "engine",
+        "ai-agent"
+      ],
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    }
+  ],
+  "apiResources": [
+    {
+      "ordId": "neonephos:apiResource:SolarSystemExplorer:v1",
+      "title": "Solar System Explorer A2A API",
+      "shortDescription": "A2A endpoint for the Solar System Explorer agent",
+      "description": "A2A protocol API for the Solar System Explorer agent.",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "partOfConsumptionBundles": [
+        {
+          "ordId": "neonephos:consumptionBundle:open:v1"
+        }
+      ],
+      "apiProtocol": "a2a",
+      "direction": "inbound",
+      "extensible": {
+        "supported": "no"
+      },
+      "resourceDefinitions": [
+        {
+          "type": "a2a-agent-card",
+          "mediaType": "application/json",
+          "url": "/solar/agent.json",
+          "accessStrategies": [
+            {
+              "type": "open"
+            }
+          ]
+        }
+      ],
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    },
+    {
+      "ordId": "neonephos:apiResource:RepairTechnician:v1",
+      "title": "Repair Technician A2A API",
+      "shortDescription": "A2A endpoint for the Repair Technician agent",
+      "description": "A2A protocol API for the Repair Technician agent.",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:spaceship-app:v1",
+      "partOfConsumptionBundles": [
+        {
+          "ordId": "neonephos:consumptionBundle:open:v1"
+        }
+      ],
+      "apiProtocol": "a2a",
+      "direction": "inbound",
+      "extensible": {
+        "supported": "no"
+      },
+      "resourceDefinitions": [
+        {
+          "type": "a2a-agent-card",
+          "mediaType": "application/json",
+          "url": "/repair/agent.json",
+          "accessStrategies": [
+            {
+              "type": "open"
+            }
+          ]
+        }
+      ],
+      "lastUpdate": "2026-03-19T00:00:00Z"
+    }
+  ],
+  "vendors": [
+    {
+      "ordId": "neonephos:vendor:Neonephos:",
+      "title": "Neonephos"
+    }
+  ]
+}
+`;

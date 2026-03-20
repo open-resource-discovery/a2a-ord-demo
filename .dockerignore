@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.git/
+.github/
+.env
+*.tgz
+*.md
+.DS_Store
+LICENSE
+LICENSES
+.reuse
+demo/

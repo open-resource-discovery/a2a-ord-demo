@@ -1,0 +1,42 @@
+# Temp
+tmp/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Dependency directories
+node_modules/
+
+# Output of 'npm pack'
+*.tgz
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Reports
+reports/
+coverage/
+
+# Cache Directories
+.npm
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test
+
+# OS
+.DS_Store
+
+# Generated ORD data
+spaceship-app/ord-data/current/
+spaceship-app/ord-data/temp/

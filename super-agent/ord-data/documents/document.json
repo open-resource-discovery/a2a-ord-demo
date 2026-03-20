@@ -1,0 +1,101 @@
+{
+  "$schema": "https://sap.github.io/open-resource-discovery/spec-v1/interfaces/Document.schema.json",
+  "openResourceDiscovery": "1.14",
+  "policyLevels": [
+    "neonephos:policyLevel-open:v1"
+  ],
+  "packages": [
+    {
+      "ordId": "neonephos:package:super-agent:v1",
+      "title": "My Spaceship Commander",
+      "shortDescription": "Orchestrator agent that discovers crew via ORD and delegates via A2A",
+      "description": "An AI commander agent that uses ORD to discover sub-agents (Solar System Explorer, Repair Technician) and delegates user tasks to them via the A2A protocol.",
+      "version": "1.0.0",
+      "vendor": "neonephos:vendor:Neonephos:",
+      "policyLevels": [
+        "neonephos:policyLevel-open:v1"
+      ]
+    }
+  ],
+  "consumptionBundles": [
+    {
+      "ordId": "neonephos:consumptionBundle:open:v1",
+      "title": "Open Access"
+    }
+  ],
+  "agents": [
+    {
+      "ordId": "neonephos:agent:SpaceshipCommander:v1",
+      "title": "My Spaceship Commander",
+      "shortDescription": "Orchestrator agent that discovers crew via ORD and delegates via A2A",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:super-agent:v1",
+      "relatedEntityTypes": [
+        "neonephos:entityType:Spaceship:v1"
+      ],
+      "exposedApiResources": [
+        {
+          "ordId": "neonephos:apiResource:SpaceshipCommander:v1"
+        }
+      ],
+      "partOfGroups": [
+        "sap.aicore:llmModel:sap.aicore:anthropic--claude-4-6-sonnet"
+      ],
+      "labels": {
+        "interactionMode": [
+          "conversational"
+        ]
+      },
+      "tags": [
+        "commander",
+        "orchestration",
+        "delegation",
+        "ai-agent"
+      ],
+      "lastUpdate": "2026-03-20T00:00:00Z"
+    }
+  ],
+  "apiResources": [
+    {
+      "ordId": "neonephos:apiResource:SpaceshipCommander:v1",
+      "title": "Spaceship Commander A2A API",
+      "shortDescription": "A2A endpoint for the Spaceship Commander agent",
+      "description": "A2A protocol API for the My Spaceship Commander orchestrator agent.",
+      "version": "1.0.0",
+      "visibility": "public",
+      "releaseStatus": "active",
+      "partOfPackage": "neonephos:package:super-agent:v1",
+      "partOfConsumptionBundles": [
+        {
+          "ordId": "neonephos:consumptionBundle:open:v1"
+        }
+      ],
+      "apiProtocol": "a2a",
+      "direction": "inbound",
+      "extensible": {
+        "supported": "no"
+      },
+      "resourceDefinitions": [
+        {
+          "type": "a2a-agent-card",
+          "mediaType": "application/json",
+          "url": "/.well-known/agent.json",
+          "accessStrategies": [
+            {
+              "type": "open"
+            }
+          ]
+        }
+      ],
+      "lastUpdate": "2026-03-20T00:00:00Z"
+    }
+  ],
+  "vendors": [
+    {
+      "ordId": "neonephos:vendor:Neonephos:",
+      "title": "Neonephos"
+    }
+  ]
+}

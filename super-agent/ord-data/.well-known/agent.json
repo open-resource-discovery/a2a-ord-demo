@@ -1,0 +1,30 @@
+{
+  "name": "My Spaceship",
+  "description": "Your spaceship commander! Discovers crew agents via ORD and delegates tasks via A2A.",
+  "protocolVersion": "0.3.0",
+  "version": "1.0.0",
+  "url": "http://localhost:3002",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "spaceship-command",
+      "name": "Spaceship Command",
+      "description": "Orchestrates crew agents discovered via ORD. Ask anything and the commander will find the right crew member.",
+      "tags": ["spaceship", "commander", "orchestration", "delegation"],
+      "examples": [
+        "The engines are overheating!",
+        "What's the weather on Mars?",
+        "Hull breach on deck 3!"
+      ]
+    }
+  ],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "provider": {
+    "organization": "SAP SE",
+    "url": "https://sap.com"
+  }
+}
