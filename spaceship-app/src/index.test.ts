@@ -28,7 +28,7 @@ describe("Spaceship App", () => {
   });
 
   it("serves Solar agent card", async () => {
-    const res = await fetch(`${baseUrl}/solar/agent.json`);
+    const res = await fetch(`${baseUrl}/solar/.well-known/agent.json`);
     assert.strictEqual(res.status, 200);
     const card = await res.json();
     assert.strictEqual(card.name, "Solar System Explorer");
@@ -38,7 +38,7 @@ describe("Spaceship App", () => {
   });
 
   it("serves Repair agent card", async () => {
-    const res = await fetch(`${baseUrl}/repair/agent.json`);
+    const res = await fetch(`${baseUrl}/repair/.well-known/agent.json`);
     assert.strictEqual(res.status, 200);
     const card = await res.json();
     assert.strictEqual(card.name, "Repair Technician");

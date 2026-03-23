@@ -109,9 +109,9 @@ app.use((_req, res, next) => {
   next();
 });
 
-// Solar agent — JSON-RPC at base path, agent card at /solar/agent.json
+// Solar agent — JSON-RPC at base path, agent card at /solar/.well-known/agent.json
 app.use(
-  "/solar/agent.json",
+  "/solar/.well-known/agent.json",
   agentCardHandler({ agentCardProvider: solarHandler }),
 );
 app.use(
@@ -122,9 +122,9 @@ app.use(
   }),
 );
 
-// Repair agent — JSON-RPC at base path, agent card at /repair/agent.json
+// Repair agent — JSON-RPC at base path, agent card at /repair/.well-known/agent.json
 app.use(
-  "/repair/agent.json",
+  "/repair/.well-known/agent.json",
   agentCardHandler({ agentCardProvider: repairHandler }),
 );
 app.use(
@@ -144,9 +144,9 @@ app.use(createOrdRouter(config.serverUrl));
 
 const server = app.listen(config.port, () => {
   console.log(`\nSpaceship App running on port ${config.port}\n`);
-  console.log(`  Solar Agent Card:   ${config.serverUrl}/solar/agent.json`);
+  console.log(`  Solar Agent Card:   ${config.serverUrl}/solar/.well-known/agent.json`);
   console.log(`  Solar A2A:          ${config.serverUrl}/solar`);
-  console.log(`  Repair Agent Card:  ${config.serverUrl}/repair/agent.json`);
+  console.log(`  Repair Agent Card:  ${config.serverUrl}/repair/.well-known/agent.json`);
   console.log(`  Repair A2A:         ${config.serverUrl}/repair`);
   console.log(`  Health:             ${config.serverUrl}/health`);
   console.log(`  ORD:                ${config.serverUrl}/.well-known/open-resource-discovery`,

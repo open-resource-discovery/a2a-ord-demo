@@ -142,7 +142,7 @@ exports[`ORD Schema Validation > ORD document matches snapshot 1`] = `
         {
           "type": "a2a-agent-card",
           "mediaType": "application/json",
-          "url": "/solar/agent.json",
+          "url": "/solar/.well-known/agent.json",
           "accessStrategies": [
             {
               "type": "open"
@@ -175,7 +175,7 @@ exports[`ORD Schema Validation > ORD document matches snapshot 1`] = `
         {
           "type": "a2a-agent-card",
           "mediaType": "application/json",
-          "url": "/repair/agent.json",
+          "url": "/repair/.well-known/agent.json",
           "accessStrategies": [
             {
               "type": "open"
