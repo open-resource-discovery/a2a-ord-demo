@@ -17,14 +17,14 @@ A demo showing how [Open Resource Discovery (ORD)](https://open-resource-discove
   │ ORD endpoint         │ <─────────────────── │  2. resolves cards     │
   │   /ord/v1/...        │                      │  3. delegates via A2A  │
   └──────────────────────┘                      └────────────────────────┘
-  :3001                                          :3002
+  :4001                                          :4002
 ```
 
 | Service              | Port | Role                                                                                                                       |
 | -------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------- |
-| `spaceship-app`      | 3001 | Hosts 2 A2A agents (Solar Explorer + Repair Technician) and serves ORD documents                                           |
-| `super-agent`        | 3002 | Commander — discovers agents via ORD, delegates via A2A                                                                    |
-| `ord-provider-super` | 3004 | Serves ORD documents for the super-agent via [provider-server](https://github.com/open-resource-discovery/provider-server) |
+| `spaceship-app`      | 4001 | Hosts 2 A2A agents (Solar Explorer + Repair Technician) and serves ORD documents                                           |
+| `super-agent`        | 4002 | Commander — discovers agents via ORD, delegates via A2A                                                                    |
+| `ord-provider-super` | 4004 | Serves ORD documents for the super-agent via [provider-server](https://github.com/open-resource-discovery/provider-server) |
 
 ## Quick Start
 
@@ -34,6 +34,16 @@ demo/demo.sh down  # tear down
 ```
 
 Then open [`demo/demo.http`](demo/demo.http) in VS Code with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for a guided walkthrough.
+
+### A2A Editor
+
+You can also try the agents in the [A2A Editor Playground](https://open-resource-discovery.github.io/a2a-editor/playground). The editor requires the **full URL to the agent card file**:
+
+| Agent              | Agent Card URL                              |
+| ------------------ | ------------------------------------------- |
+| Repair Technician  | `http://localhost:4001/repair/agent.json`   |
+| Solar Explorer     | `http://localhost:4001/solar/agent.json`    |
+| Commander          | `http://localhost:4002/.well-known/agent.json` |
 
 ## Contributing
 
