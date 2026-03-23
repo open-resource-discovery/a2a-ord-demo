@@ -35,6 +35,16 @@ demo/demo.sh down  # tear down
 
 Then open [`demo/demo.http`](demo/demo.http) in VS Code with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for a guided walkthrough.
 
+### A2A Editor
+
+You can also try the agents in the [A2A Editor Playground](https://open-resource-discovery.github.io/a2a-editor/playground). The editor requires the **full URL to the agent card file**:
+
+| Agent              | Agent Card URL                            |
+| ------------------ | ----------------------------------------- |
+| Repair Technician  | `http://localhost:3001/repair/agent.json` |
+| Solar Explorer     | `http://localhost:3001/solar/agent.json`  |
+| Commander          | `http://localhost:3002`                   |
+
 ## Contributing
 
 If you wish to contribute code or offer feedback for this project, please see [CONTRIBUTING.md](CONTRIBUTING.md).
