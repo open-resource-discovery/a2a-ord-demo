@@ -51,7 +51,7 @@ Accept: application/json
 ### Step 5: Fetch Repair Technician agent card
 
 # @name repairCard
-GET {{spaceship}}/repair/.well-known/agent.json
+GET {{spaceship}}/repair/agent.json
 Accept: application/json
 
 ### Step 6: Call Repair agent — "The engines are overheating!"
@@ -75,7 +75,7 @@ Content-Type: application/json
 ### Step 7: Fetch Solar Explorer agent card
 
 # @name solarCard
-GET {{spaceship}}/solar/.well-known/agent.json
+GET {{spaceship}}/solar/agent.json
 Accept: application/json
 
 ### Step 8: Call Solar agent — "What's the weather like on Jupiter?"
