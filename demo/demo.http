@@ -150,10 +150,10 @@ Content-Type: application/json
 ### Try the full story in the visual A2A Editor:
 ###   https://open-resource-discovery.github.io/a2a-editor/playground
 ###
-### 1. Click "+ Add" and enter:  http://localhost:3001/repair
-### 2. Send: "The warp drive is making strange noises!"
-### 3. Add another agent:        http://localhost:3001/solar
-### 4. Send: "Tell me a fun fact about Saturn's rings"
+### 1. Click "+ Add" and enter:  http://localhost:3001/repair/agent.json
+### 2. Send: "The warp drive is making strange noises!" (it will need you to adjust the endpoint to http://localhost:3001/repair/ )
+### 3. Add another agent:        http://localhost:3001/solar/agent.json
+### 4. Send: "Tell me a fun fact about Saturn's rings" (it will need you to adjust the endpoint to http://localhost:3001/solar/ )
 ### 5. Add the commander:        http://localhost:3002
 ### 6. Send: "We need to land on Mars, check the weather first!"
 ###    → Watch the commander discover agents via ORD and delegate.
