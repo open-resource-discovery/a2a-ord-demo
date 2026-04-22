@@ -140,7 +140,7 @@ app.get("/health", (_req, res) => {
 });
 
 // ORD endpoints (shared — one ORD document describes both agents)
-app.use(createOrdRouter(config.serverUrl));
+app.use(createOrdRouter(config.internalBaseUrl ?? config.serverUrl));
 
 const server = app.listen(config.port, () => {
   console.log(`\nSpaceship App running on port ${config.port}\n`);
