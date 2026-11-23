@@ -4,3 +4,19 @@ updates:
     directory: /
     schedule:
       interval: weekly
+  - package-ecosystem: docker
+    directory: /spaceship-app
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: /super-agent
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /spaceship-app
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /super-agent
+    schedule:
+      interval: weekly

@@ -1,2 +1,5 @@
 # Review owners for CI and build configuration.
 /.github/ @open-resource-discovery/a2a-ord-demo-admin
+/super-agent/package*.json @open-resource-discovery/a2a-ord-demo-admin
+/spaceship-app/package*.json @open-resource-discovery/a2a-ord-demo-admin
+/**/Dockerfile @open-resource-discovery/a2a-ord-demo-admin
