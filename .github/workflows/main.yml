@@ -23,8 +23,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test
-    permissions:
-      contents: read
   demo-test:
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +33,5 @@ jobs:
         with:
           node-version: "26.13.1"
       - run: node --test demo/demo-files.test.js
-    permissions:
-      contents: read
 permissions:
   contents: read
