@@ -36,7 +36,7 @@ For details, please see the [guideline for using AI-generated code](https://gith
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) >= 22.0.0
+- [Node.js](https://nodejs.org/) >= 26.13.1
 - [Docker](https://www.docker.com/) and Docker Compose
 
 ### Getting Started
