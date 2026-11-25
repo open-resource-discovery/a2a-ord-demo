@@ -3,3 +3,10 @@
 /super-agent/package*.json @open-resource-discovery/a2a-ord-demo-admin
 /spaceship-app/package*.json @open-resource-discovery/a2a-ord-demo-admin
 /**/Dockerfile @open-resource-discovery/a2a-ord-demo-admin
+/spaceship-app/.npmrc @open-resource-discovery/a2a-ord-demo-admin
+/super-agent/.npmrc @open-resource-discovery/a2a-ord-demo-admin
+/spaceship-app/package.json @open-resource-discovery/a2a-ord-demo-admin
+/spaceship-app/package-lock.json @open-resource-discovery/a2a-ord-demo-admin
+/super-agent/package.json @open-resource-discovery/a2a-ord-demo-admin
+/super-agent/package-lock.json @open-resource-discovery/a2a-ord-demo-admin
+/SECURITY_INSTALL.md @open-resource-discovery/a2a-ord-demo-admin
