@@ -1,12 +1,12 @@
-FROM node:22-slim AS builder
+FROM node:26.13.1-slim@sha256:e6bedef217677b276c591795e169840edd9096dbf13f29df8ef8d1856b8820bc AS builder
 WORKDIR /app
-COPY spaceship-app/package.json spaceship-app/package-lock.json spaceship-app/tsconfig.json ./
-RUN npm ci
+COPY spaceship-app/package.json spaceship-app/package-lock.json spaceship-app/tsconfig.json .npmrc ./
+RUN npm install --global --ignore-scripts npm@11.20.0 && npm ci --ignore-scripts
 COPY spaceship-app/src/ src/
 COPY spaceship-app/ord-data/ ord-data/
 RUN rm -f src/*.test.ts && npm run build
 
-FROM node:22-slim
+FROM node:26.13.1-slim@sha256:e6bedef217677b276c591795e169840edd9096dbf13f29df8ef8d1856b8820bc
 
 LABEL org.opencontainers.image.source=https://github.com/open-resource-discovery/a2a-ord-demo
 LABEL org.opencontainers.image.description="A2A ORD Demo - Spaceship App"

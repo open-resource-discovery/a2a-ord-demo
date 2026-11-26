@@ -1,12 +1,12 @@
-FROM node:22-slim AS builder
+FROM node:26.13.1-slim@sha256:e6bedef217677b276c591795e169840edd9096dbf13f29df8ef8d1856b8820bc AS builder
 WORKDIR /app
-COPY super-agent/package.json super-agent/package-lock.json super-agent/tsconfig.json ./
-RUN npm ci
+COPY super-agent/package.json super-agent/package-lock.json super-agent/tsconfig.json .npmrc ./
+RUN npm install --global --ignore-scripts npm@11.20.0 && npm ci --ignore-scripts
 COPY super-agent/src/ src/
 COPY super-agent/ord-data/ ord-data/
 RUN rm -f src/*.test.ts && npm run build
 
-FROM node:22-slim
+FROM node:26.13.1-slim@sha256:e6bedef217677b276c591795e169840edd9096dbf13f29df8ef8d1856b8820bc
 
 LABEL org.opencontainers.image.source=https://github.com/open-resource-discovery/a2a-ord-demo
 LABEL org.opencontainers.image.description="A2A ORD Demo - Super Agent"

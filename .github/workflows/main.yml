@@ -4,6 +4,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,18 +17,25 @@ jobs:
       run:
         working-directory: ${{ matrix.workspace }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          node-version: "22"
-      - run: npm ci
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "26"
+      - name: Install pinned npm for dependency policy
+        run: npm install --global --ignore-scripts npm@11.20.0 --registry=https://registry.npmjs.org/
+
+      - run: npm ci --ignore-scripts
       - run: npm run build
       - run: npm run test
   demo-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          node-version: "22"
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "26"
       - run: node --test demo/demo-files.test.js
